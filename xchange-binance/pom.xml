@@ -8,7 +8,7 @@
         <version>4.4.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>xchange-binance</artifactId>
+    <artifactId>xchange-binance-testing</artifactId>
 
     <name>XChange Binance</name>
     <description>XChange implementation for the Binance Exchange</description>
