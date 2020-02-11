@@ -40,8 +40,7 @@ public final class BankeraAdapters {
 
   public static Wallet adaptWallet(List<BankeraWallet> wallets) {
     List<Balance> balances =
-        wallets
-            .stream()
+        wallets.stream()
             .map(
                 w ->
                     new Balance.Builder()
@@ -51,7 +50,7 @@ public final class BankeraAdapters {
                         .currency(new Currency(w.getCurrency()))
                         .build())
             .collect(Collectors.toList());
-    return new Wallet(balances);
+    return Wallet.Builder.from(balances).build();
   }
 
   public static ExchangeException adaptError(BankeraException exception) {
