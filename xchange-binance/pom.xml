@@ -8,6 +8,8 @@
         <version>4.4.2-SNAPSHOT</version>
     </parent>
 
+
+    <version>4.4.2-testing-SNAPSHOT</version>
     <artifactId>xchange-binance</artifactId>
 
     <name>XChange Binance</name>
