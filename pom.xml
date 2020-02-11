@@ -84,13 +84,6 @@
 
     </distributionManagement>
 
-    <developers>
-        <developer>
-            <name>Tim Molter</name>
-        </developer>
-    </developers>
-
-
     <scm>
         <connection>scm:git:git@github.com:knowm/XChange.git</connection>
         <developerConnection>scm:git:git@github.com:knowm/XChange.git</developerConnection>
