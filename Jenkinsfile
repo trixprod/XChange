@@ -15,6 +15,6 @@ node {
     }
 
     stage('deploy') {
-        sh "./mvnw deploy -DskipTests"
+        sh "./mvnw deploy -U -DskipTests"
     }
 }
