@@ -5,11 +5,11 @@
     <parent>
         <artifactId>xchange-parent</artifactId>
         <groupId>org.knowm.xchange</groupId>
-        <version>4.4.2-SNAPSHOT</version>
+        <version>4.4.2-trixprod-SNAPSHOT</version>
     </parent>
 
 
-    <version>4.4.2-testing-SNAPSHOT</version>
+    <version>4.4.2-trixprod-SNAPSHOT</version>
     <artifactId>xchange-binance</artifactId>
 
     <name>XChange Binance</name>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.knowm.xchange</groupId>
             <artifactId>xchange-core</artifactId>
-            <version>4.4.2-SNAPSHOT</version>
+            <version>4.4.2-trixprod-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
