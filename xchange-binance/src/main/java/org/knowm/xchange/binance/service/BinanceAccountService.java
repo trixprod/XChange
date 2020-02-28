@@ -67,9 +67,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
   }
 
   private BinanceAccountInformation getBinanceAccountInformation() throws IOException {
-    Long recvWindow =
-        (Long) exchange.getExchangeSpecification().getExchangeSpecificParametersItem("recvWindow");
-    return super.account(recvWindow, getTimestamp());
+    return super.account(getRecvWindow(), getTimestamp());
   }
 
   @Override
@@ -192,9 +190,6 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
           asset = cp.getCurrency().getCurrencyCode();
         }
       }
-      Long recvWindow =
-          (Long)
-              exchange.getExchangeSpecification().getExchangeSpecificParametersItem("recvWindow");
 
       Integer limit = null;
 
@@ -205,7 +200,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
 
       boolean withdrawals = true;
       boolean deposits = true;
-      boolean otherInflow = true;
+      boolean airdrops = false;
 
       Long startTime = null;
       Long endTime = null;
@@ -224,13 +219,13 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
         if (f.getType() != null) {
           withdrawals = f.getType() == Type.WITHDRAWAL;
           deposits = f.getType() == Type.DEPOSIT;
-          otherInflow = f.getType() == Type.OTHER_INFLOW;
+          airdrops = f.getType() == Type.AIRDROP;
         }
       }
 
       List<FundingRecord> result = new ArrayList<>();
       if (withdrawals) {
-        super.withdrawHistory(asset, startTime, endTime, recvWindow, getTimestamp())
+        super.withdrawHistory(asset, startTime, endTime, getRecvWindow(), getTimestamp())
             .forEach(
                 w -> {
                   result.add(
@@ -251,7 +246,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
       }
 
       if (deposits) {
-        super.depositHistory(asset, startTime, endTime, recvWindow, getTimestamp())
+        super.depositHistory(asset, startTime, endTime, getRecvWindow(), getTimestamp())
             .forEach(
                 d -> {
                   result.add(
@@ -271,7 +266,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
                 });
       }
 
-      if (otherInflow) {
+      if (airdrops) {
         super.assetDividends(asset, startTime, endTime, recvWindow, getTimestamp(), limit)
             .forEach(
                 a -> {
@@ -284,7 +279,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
                           a.getAmount(),
                           null,
                           String.valueOf(a.getTranId()),
-                          Type.OTHER_INFLOW,
+                          Type.AIRDROP,
                           Status.COMPLETE,
                           null,
                           null,
