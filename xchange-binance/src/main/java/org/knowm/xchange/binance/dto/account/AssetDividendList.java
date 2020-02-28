@@ -13,8 +13,7 @@ public final class AssetDividendList extends SapiResponse<List<AssetDividendList
   private final Long total;
 
   public AssetDividendList(
-      @JsonProperty("rows") AssetDividend[] rows,
-      @JsonProperty("total") Long total) {
+      @JsonProperty("rows") AssetDividend[] rows, @JsonProperty("total") Long total) {
     this.rows = rows;
     this.total = total;
   }
@@ -24,6 +23,10 @@ public final class AssetDividendList extends SapiResponse<List<AssetDividendList
     return Arrays.asList(rows);
   }
 
+  public Long getTotal() {
+    return total;
+  }
+
   @Override
   public String toString() {
     return "AssetDividendList [rows=" + Arrays.toString(rows) + "]";
@@ -31,19 +34,30 @@ public final class AssetDividendList extends SapiResponse<List<AssetDividendList
 
   @Data
   public static final class AssetDividend {
-
-    //    {
-    //           "amount":"10.00000000",
-    //            "asset":"BHFT",
-    //            "divTime":1563189166000,
-    //            "enInfo":"BHFT distribution",
-    //            "tranId":2968885920
-    //    },
-
     private BigDecimal amount;
     private String asset;
     private Long divTime;
     private String enInfo;
     private Long tranId;
+
+    public BigDecimal getAmount() {
+      return amount;
+    }
+
+    public String getAsset() {
+      return asset;
+    }
+
+    public Long getDivTime() {
+      return divTime;
+    }
+
+    public String getEnInfo() {
+      return enInfo;
+    }
+
+    public Long getTranId() {
+      return tranId;
+    }
   }
 }

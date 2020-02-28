@@ -53,10 +53,11 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
     }
   }
 
-  /** (0:pending,1:success) */
+  /** (0:pending,6: credited but cannot withdraw,1:success) */
   private static FundingRecord.Status depositStatus(int status) {
     switch (status) {
       case 0:
+      case 6:
         return Status.PROCESSING;
       case 1:
         return Status.COMPLETE;
@@ -204,7 +205,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
 
       boolean withdrawals = true;
       boolean deposits = true;
-      boolean airdrops = false;
+      boolean otherInflow = true;
 
       Long startTime = null;
       Long endTime = null;
@@ -223,7 +224,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
         if (f.getType() != null) {
           withdrawals = f.getType() == Type.WITHDRAWAL;
           deposits = f.getType() == Type.DEPOSIT;
-          airdrops = f.getType() == Type.AIRDROP;
+          otherInflow = f.getType() == Type.OTHER_INFLOW;
         }
       }
 
@@ -270,7 +271,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
                 });
       }
 
-      if (airdrops) {
+      if (otherInflow) {
         super.assetDividends(asset, startTime, endTime, recvWindow, getTimestamp(), limit)
             .forEach(
                 a -> {
@@ -283,7 +284,7 @@ public class BinanceAccountService extends BinanceAccountServiceRaw implements A
                           a.getAmount(),
                           null,
                           String.valueOf(a.getTranId()),
-                          Type.AIRDROP,
+                          Type.OTHER_INFLOW,
                           Status.COMPLETE,
                           null,
                           null,
