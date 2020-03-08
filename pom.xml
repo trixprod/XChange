@@ -9,7 +9,7 @@
 
     <groupId>org.knowm.xchange</groupId>
     <artifactId>xchange-parent</artifactId>
-    <version>4.5.0-SNAPSHOT</version>
+    <version>4.5.0-trixprod-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>XChange</name>
@@ -72,12 +72,12 @@
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
         <downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchange</downloadUrl>
     </distributionManagement>
@@ -179,6 +179,7 @@
         <module>xchange-paribu</module>
         <module>xchange-paymium</module>
         <module>xchange-poloniex</module>
+        <module>xchange-quadrigacx</module>
         <module>xchange-quoine</module>
         <module>xchange-ripple</module>
         <module>xchange-simulated</module>
@@ -187,6 +188,7 @@
         <module>xchange-truefx</module>
         <module>xchange-upbit</module>
         <module>xchange-vaultoro</module>
+        <module>xchange-wex</module>
         <module>xchange-yobit</module>
         <module>xchange-zaif</module>
         <module>xchange-enigma</module>
